@@ -9,6 +9,8 @@
     .loader { border-top-color: #285376; animation: spinner 1.5s linear infinite; }
     @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     input, select { font-size: 16px !important; }
+    /* Custom style for card selection */
+    .card-option:checked + label { border-color: #285376; background-color: #f0f7ff; color: #285376; }
   </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
@@ -16,22 +18,37 @@
   <div id="formContainer" class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border-t-4 border-[#285376] relative">
     
     <div class="flex justify-center mb-6">
-        <img src="https://lh3.googleusercontent.com/d/1zuH6Bs5Dd6UvsSslI8qHyTStJCTOuGQT" alt="AstraGlobal" class="h-16 w-auto object-contain">
+        <img src="https://lh3.googleusercontent.com/d/1zuH6Bs5Dd6UvsSslI8qHyTStJCTOuGQT" alt="AstraGlobal Logo" class="h-16 w-auto object-contain">
     </div>
 
     <div class="text-center mb-6">
       <h2 class="text-2xl font-bold text-gray-800">ID Card Registration</h2>
-      <p class="text-sm text-gray-500 mt-1">Please enter your details carefully for the official ID.</p>
+      <p class="text-sm text-gray-500 mt-1">Provide official details for card printing.</p>
     </div>
 
     <div class="space-y-4">
+      
+      <div>
+        <label class="block text-xs font-bold text-gray-600 uppercase mb-2">Select ID Card Type</label>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="relative">
+            <input type="radio" name="cardType" id="regular" value="Regular" class="card-option hidden" checked>
+            <label for="regular" class="block text-center py-2 border-2 border-gray-200 rounded-md cursor-pointer text-sm font-semibold text-gray-500 hover:bg-gray-50 transition">Regular</label>
+          </div>
+          <div class="relative">
+            <input type="radio" name="cardType" id="platinum" value="Platinum" class="card-option hidden">
+            <label for="platinum" class="block text-center py-2 border-2 border-gray-200 rounded-md cursor-pointer text-sm font-semibold text-gray-500 hover:bg-gray-50 transition tracking-wide">Platinum</label>
+          </div>
+        </div>
+      </div>
+
       <div class="grid grid-cols-2 gap-4">
         <div>
           <label class="block text-xs font-bold text-gray-600 uppercase">Full Name</label>
           <input type="text" id="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#285376] focus:border-[#285376] text-sm" placeholder="Arsh Khera">
         </div>
         <div>
-          <label class="block text-xs font-bold text-gray-600 uppercase">Employee ID</label>
+          <label class="block text-xs font-bold text-gray-600 uppercase">Employee ID (5 Digits)</label>
           <input type="text" id="empId" maxlength="5" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#285376] focus:border-[#285376] text-sm" placeholder="12345">
         </div>
       </div>
@@ -41,92 +58,82 @@
           <label class="block text-xs font-bold text-gray-600 uppercase">Blood Group</label>
           <select id="bloodGroup" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#285376] focus:border-[#285376] text-sm">
             <option value="">Select</option>
-            <option value="A+">A+</option><option value="A-">A-</option>
-            <option value="B+">B+</option><option value="B-">B-</option>
-            <option value="O+">O+</option><option value="O-">O-</option>
-            <option value="AB+">AB+</option><option value="AB-">AB-</option>
+            <option value="A+">A+</option><option value="O+">O+</option>
+            <option value="B+">B+</option><option value="AB+">AB+</option>
           </select>
         </div>
         <div>
           <label class="block text-xs font-bold text-gray-600 uppercase">Emergency Contact</label>
-          <input type="text" id="emergencyContact" maxlength="10" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#285376] focus:border-[#285376] text-sm" placeholder="10 Digit Number">
+          <input type="text" id="emergencyContact" maxlength="10" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#285376] focus:border-[#285376] text-sm" placeholder="9876543210">
         </div>
       </div>
 
       <div>
         <label class="block text-xs font-bold text-gray-600 uppercase">Passport Photo (Min 600px)</label>
-        <p class="text-[10px] text-gray-400 mb-1 italic">High quality JPG/PNG only</p>
-        <input type="file" id="photo" accept="image/png, image/jpeg" class="mt-1 block w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-[#285376]/10 file:text-[#285376] hover:file:bg-[#285376]/20">
+        <p class="text-[10px] text-gray-400 mb-1">Clear background, high-resolution JPG/PNG</p>
+        <input type="file" id="photo" accept="image/*" class="mt-1 block w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-[#285376]/10 file:text-[#285376] hover:file:bg-[#285376]/20">
       </div>
 
       <p id="errorMsg" class="bg-red-50 text-red-600 text-[11px] p-2 rounded hidden border border-red-200 text-center"></p>
 
       <button onclick="processUpload()" id="submitBtn" class="w-full bg-[#285376] text-white py-3 rounded-md font-bold hover:bg-[#1e3e59] transition duration-200 flex justify-center items-center shadow-md">
-        <span>Submit Details</span>
+        <span>Submit Application</span>
       </button>
     </div>
   </div>
 
   <div id="successContainer" class="hidden bg-white p-10 rounded-xl shadow-lg w-full max-w-md text-center">
-    <div class="inline-flex items-center justify-center w-16 h-16 bg-[#285376]/10 rounded-full mb-4">
-      <svg class="w-8 h-8 text-[#285376]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+    <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+      <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
     </div>
-    <h2 class="text-2xl font-bold text-gray-800">Registration Complete</h2>
-    <p class="text-gray-500 mt-2">Your information has been securely saved to our database.</p>
-    <button onclick="location.reload()" class="mt-6 text-[#285376] hover:underline text-sm font-medium">Add another candidate</button>
+    <h2 class="text-2xl font-bold text-gray-800 tracking-tight">Application Received</h2>
+    <p class="text-gray-500 mt-2">Your data and photo have been uploaded successfully.</p>
+    <button onclick="location.reload()" class="mt-6 text-[#285376] font-semibold hover:underline">Add another entry</button>
   </div>
 
   <script>
     async function processUpload() {
       const name = document.getElementById('name').value.trim();
       const empId = document.getElementById('empId').value.trim();
+      const cardType = document.querySelector('input[name="cardType"]:checked').value;
       const bloodGroup = document.getElementById('bloodGroup').value;
       const emergencyContact = document.getElementById('emergencyContact').value.trim();
       const fileInput = document.getElementById('photo');
       const submitBtn = document.getElementById('submitBtn');
       const errorMsg = document.getElementById('errorMsg');
 
-      // Reset Error State
       errorMsg.classList.add('hidden');
 
-      // 1. Mandatory Fields
       if (!name || !empId || !bloodGroup || !emergencyContact || !fileInput.files[0]) {
-        showError("Please fill in all fields."); return;
+        showError("Please fill out all fields."); return;
       }
-
-      // 2. Length Validations
-      if (empId.length !== 5) {
-        showError("Employee ID must be exactly 5 digits."); return;
-      }
-      if (emergencyContact.length !== 10) {
-        showError("Emergency contact must be 10 digits."); return;
-      }
+      if (empId.length !== 5) { showError("Employee ID must be 5 digits."); return; }
+      if (emergencyContact.length !== 10) { showError("Phone must be 10 digits."); return; }
 
       const file = fileInput.files[0];
       const reader = new FileReader();
 
-      // UI Loading State
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<div class="loader rounded-full border-2 border-t-2 border-gray-200 h-4 w-4 mr-2"></div> Saving...';
+      submitBtn.innerHTML = '<div class="loader rounded-full border-2 border-t-2 border-gray-200 h-4 w-4 mr-2"></div> Uploading...';
 
       reader.onload = function(e) {
         const img = new Image();
         img.onload = async function() {
-          // 3. PIXEL QUALITY CHECK (Minimum 600x600)
           if (img.width < 600 || img.height < 600) {
-            showError("Photo quality too low (" + img.width + "x" + img.height + "px). Min 600px required.");
+            showError("Photo quality too low (" + img.width + "x" + img.height + "px). Please use a clear 600px photo.");
             resetButton();
           } else {
             const payload = {
               name: name,
               empId: empId,
+              cardType: cardType,
               bloodGroup: bloodGroup,
               emergencyContact: emergencyContact,
               data: e.target.result
             };
 
             // !!! REPLACE THIS URL !!!
-            const scriptURL = "https://script.google.com/macros/s/AKfycbykFytWHnzuNSqcnYD5xLsX1QInSh1RNHkfXMhIPHexwlGozlMhGh0x-hR8SzyVmELnNg/exec";
+            const scriptURL = "PASTE_YOUR_GOOGLE_SCRIPT_URL_HERE";
 
             try {
               const response = await fetch(scriptURL, {
@@ -138,11 +145,11 @@
                 document.getElementById('formContainer').classList.add('hidden');
                 document.getElementById('successContainer').classList.remove('hidden');
               } else {
-                showError("Server: " + result);
+                showError("Error: " + result);
                 resetButton();
               }
             } catch (err) {
-              showError("Connection failed. Try again.");
+              showError("Network error. Please check your connection.");
               resetButton();
             }
           }
@@ -161,7 +168,7 @@
     function resetButton() {
       const btn = document.getElementById('submitBtn');
       btn.disabled = false;
-      btn.innerHTML = 'Submit Details';
+      btn.innerHTML = 'Submit Application';
     }
   </script>
 </body>
