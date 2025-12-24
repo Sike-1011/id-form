@@ -6,95 +6,64 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background-color: #f3f4f6; font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
-    .loader { border-top-color: #285376; animation: spinner 1.5s linear infinite; }
+    .loader { border-top-color: #285376; border-left-color: transparent; border-right-color: transparent; animation: spinner 1s linear infinite; }
     @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     input, select { font-size: 16px !important; }
-    /* Custom style for card selection */
     .card-option:checked + label { border-color: #285376; background-color: #f0f7ff; color: #285376; }
   </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
 
-  <div id="formContainer" class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border-t-4 border-[#285376] relative">
-    
+  <div id="formContainer" class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border-t-4 border-[#285376]">
     <div class="flex justify-center mb-6">
-        <img src="https://lh3.googleusercontent.com/d/1zuH6Bs5Dd6UvsSslI8qHyTStJCTOuGQT" alt="AstraGlobal Logo" class="h-16 w-auto object-contain">
+        <img src="https://lh3.googleusercontent.com/d/1zuH6Bs5Dd6UvsSslI8qHyTStJCTOuGQT" alt="Logo" class="h-16 w-auto object-contain">
     </div>
-
     <div class="text-center mb-6">
-      <h2 class="text-2xl font-bold text-gray-800">ID Card Registration</h2>
+      <h2 class="text-2xl font-bold text-gray-800 tracking-tight">ID Card Registration</h2>
       <p class="text-sm text-gray-500 mt-1">Provide official details for card printing.</p>
     </div>
 
     <div class="space-y-4">
-      
       <div>
-        <label class="block text-xs font-bold text-gray-600 uppercase mb-2">Select ID Card Type</label>
+        <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Select ID Card Type</label>
         <div class="grid grid-cols-2 gap-3">
-          <div class="relative">
-            <input type="radio" name="cardType" id="regular" value="Regular" class="card-option hidden" checked>
-            <label for="regular" class="block text-center py-2 border-2 border-gray-200 rounded-md cursor-pointer text-sm font-semibold text-gray-500 hover:bg-gray-50 transition">Regular</label>
-          </div>
-          <div class="relative">
-            <input type="radio" name="cardType" id="platinum" value="Platinum" class="card-option hidden">
-            <label for="platinum" class="block text-center py-2 border-2 border-gray-200 rounded-md cursor-pointer text-sm font-semibold text-gray-500 hover:bg-gray-50 transition tracking-wide">Platinum</label>
-          </div>
+          <input type="radio" name="cardType" id="regular" value="Regular" class="card-option hidden" checked>
+          <label for="regular" class="block text-center py-2 border-2 rounded-lg cursor-pointer text-sm font-bold text-gray-400">Regular</label>
+          <input type="radio" name="cardType" id="platinum" value="Platinum" class="card-option hidden">
+          <label for="platinum" class="block text-center py-2 border-2 rounded-lg cursor-pointer text-sm font-bold text-gray-400">Platinum</label>
         </div>
       </div>
 
       <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label class="block text-xs font-bold text-gray-600 uppercase">Full Name</label>
-          <input type="text" id="name" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#285376] focus:border-[#285376] text-sm" placeholder="Arsh Khera">
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-gray-600 uppercase">Employee ID (5 Digits)</label>
-          <input type="text" id="empId" maxlength="5" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#285376] focus:border-[#285376] text-sm" placeholder="12345">
-        </div>
+        <input type="text" id="name" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="Full Name">
+        <input type="text" id="empId" maxlength="5" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="Emp ID (5 digits)">
       </div>
 
       <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label class="block text-xs font-bold text-gray-600 uppercase">Blood Group</label>
-          <select id="bloodGroup" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#285376] focus:border-[#285376] text-sm">
-            <option value="">Select</option>
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-gray-600 uppercase">Emergency Contact</label>
-          <input type="text" id="emergencyContact" maxlength="10" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#285376] focus:border-[#285376] text-sm" placeholder="9876543210">
-        </div>
+        <select id="bloodGroup" class="w-full px-3 py-2 border rounded-md text-sm">
+          <option value="">Blood Group</option>
+          <option value="A+">A+</option><option value="A-">A-</option><option value="B+">B+</option><option value="B-">B-</option>
+          <option value="O+">O+</option><option value="O-">O-</option><option value="AB+">AB+</option><option value="AB-">AB-</option>
+        </select>
+        <input type="text" id="emergencyContact" maxlength="10" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="Phone (10 digits)">
       </div>
 
       <div>
-        <label class="block text-xs font-bold text-gray-600 uppercase">Passport Photo (Min 600px)</label>
-        <p class="text-[10px] text-gray-400 mb-1">Clear background, high-resolution JPG/PNG</p>
-        <input type="file" id="photo" accept="image/*" class="mt-1 block w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-[#285376]/10 file:text-[#285376] hover:file:bg-[#285376]/20">
+        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Passport Photo (Min 600px)</label>
+        <input type="file" id="photo" accept="image/*" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-[#285376]/10 file:text-[#285376]">
       </div>
 
-      <p id="errorMsg" class="bg-red-50 text-red-600 text-[11px] p-2 rounded hidden border border-red-200 text-center"></p>
-
-      <button onclick="processUpload()" id="submitBtn" class="w-full bg-[#285376] text-white py-3 rounded-md font-bold hover:bg-[#1e3e59] transition duration-200 flex justify-center items-center shadow-md">
-        <span>Submit Application</span>
+      <p id="errorMsg" class="bg-red-50 text-red-600 text-[11px] p-2 rounded hidden border border-red-100 text-center"></p>
+      <button onclick="processUpload()" id="submitBtn" class="w-full bg-[#285376] text-white py-3 rounded-md font-bold shadow-md hover:bg-[#1e3e59] flex justify-center items-center">
+        <span>Submit Registration</span>
       </button>
     </div>
   </div>
 
   <div id="successContainer" class="hidden bg-white p-10 rounded-xl shadow-lg w-full max-w-md text-center">
-    <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-      <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-    </div>
-    <h2 class="text-2xl font-bold text-gray-800 tracking-tight">Application Received</h2>
-    <p class="text-gray-500 mt-2">Your data and photo have been uploaded successfully.</p>
-    <button onclick="location.reload()" class="mt-6 text-[#285376] font-semibold hover:underline">Add another entry</button>
+    <h2 class="text-2xl font-bold text-gray-800">Success!</h2>
+    <p class="text-gray-500 mt-2">Registration saved successfully.</p>
+    <button onclick="location.reload()" class="mt-6 text-[#285376] font-bold">Add Another</button>
   </div>
 
   <script>
@@ -106,58 +75,43 @@
       const emergencyContact = document.getElementById('emergencyContact').value.trim();
       const fileInput = document.getElementById('photo');
       const submitBtn = document.getElementById('submitBtn');
-      const errorMsg = document.getElementById('errorMsg');
-
-      errorMsg.classList.add('hidden');
 
       if (!name || !empId || !bloodGroup || !emergencyContact || !fileInput.files[0]) {
-        showError("Please fill out all fields."); return;
+        showError("Fill all fields."); return;
       }
-      if (empId.length !== 5) { showError("Employee ID must be 5 digits."); return; }
-      if (emergencyContact.length !== 10) { showError("Phone must be 10 digits."); return; }
+      if (empId.length !== 5) { showError("Emp ID must be 5 digits."); return; }
 
       const file = fileInput.files[0];
       const reader = new FileReader();
-
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<div class="loader rounded-full border-2 border-t-2 border-gray-200 h-4 w-4 mr-2"></div> Uploading...';
+      submitBtn.innerHTML = '<div class="loader h-4 w-4 mr-2"></div> Saving...';
 
       reader.onload = function(e) {
         const img = new Image();
         img.onload = async function() {
           if (img.width < 600 || img.height < 600) {
-            showError("Photo quality too low (" + img.width + "x" + img.height + "px). Please use a clear photo with height and width at least 600px.");
+            showError("Photo quality too low (min 600px).");
             resetButton();
           } else {
-            const payload = {
-              name: name,
-              empId: empId,
-              cardType: cardType,
-              bloodGroup: bloodGroup,
-              emergencyContact: emergencyContact,
-              data: e.target.result
-            };
-
-            // !!! REPLACE THIS URL !!!
-            const scriptURL = "https://script.google.com/macros/s/AKfycbykFytWHnzuNSqcnYD5xLsX1QInSh1RNHkfXMhIPHexwlGozlMhGh0x-hR8SzyVmELnNg/exec";
+            const payload = { name, empId, cardType, bloodGroup, emergencyContact, data: e.target.result };
+            
+            // PASTE YOUR GOOGLE WEB APP URL HERE
+            const scriptURL = "https://script.google.com/macros/s/AKfycbwydo0KqLB8tDHIbc5iaY2ReZNEAR-Fcwk4X7ER3-oFO32wq-6JUObWkQgaUnn6dy4C4g/exec";
 
             try {
-              const response = await fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify(payload)
-              });
-              const result = await response.text();
+              const res = await fetch(scriptURL, { method: 'POST', body: JSON.stringify(payload) });
+              const result = await res.text();
               if (result === "Success") {
                 document.getElementById('formContainer').classList.add('hidden');
                 document.getElementById('successContainer').classList.remove('hidden');
+              } else if (result === "Duplicate") {
+                showError("This Employee ID is already registered.");
+                resetButton();
               } else {
                 showError("Error: " + result);
                 resetButton();
               }
-            } catch (err) {
-              showError("Network error. Please check your connection.");
-              resetButton();
-            }
+            } catch (err) { showError("Connection Error."); resetButton(); }
           }
         };
         img.src = e.target.result;
@@ -165,17 +119,8 @@
       reader.readAsDataURL(file);
     }
 
-    function showError(txt) {
-      const err = document.getElementById('errorMsg');
-      err.innerText = txt;
-      err.classList.remove('hidden');
-    }
-
-    function resetButton() {
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = false;
-      btn.innerHTML = 'Submit Application';
-    }
+    function showError(t) { const e = document.getElementById('errorMsg'); e.innerText = t; e.classList.remove('hidden'); }
+    function resetButton() { const b = document.getElementById('submitBtn'); b.disabled = false; b.innerHTML = 'Submit Registration'; }
   </script>
 </body>
 </html>
