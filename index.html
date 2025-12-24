@@ -23,7 +23,7 @@
       <p class="text-sm text-gray-500 mt-1">Provide official details for card printing.</p>
     </div>
 
-    <div class="space-y-4">
+    <div class="space-y-5">
       <div>
         <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Select ID Card Type</label>
         <div class="grid grid-cols-2 gap-3">
@@ -35,35 +35,58 @@
       </div>
 
       <div class="grid grid-cols-2 gap-4">
-        <input type="text" id="name" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="Full Name">
-        <input type="text" id="empId" maxlength="5" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="Emp ID (5 digits)">
+        <div>
+          <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Full Name</label>
+          <input type="text" id="name" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-[#285376] focus:border-[#285376]" placeholder="Arsh Khera">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Employee ID</label>
+          <input type="text" id="empId" maxlength="5" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-[#285376] focus:border-[#285376]" placeholder="12345">
+        </div>
       </div>
 
       <div class="grid grid-cols-2 gap-4">
-        <select id="bloodGroup" class="w-full px-3 py-2 border rounded-md text-sm">
-          <option value="">Blood Group</option>
-          <option value="A+">A+</option><option value="A-">A-</option><option value="B+">B+</option><option value="B-">B-</option>
-          <option value="O+">O+</option><option value="O-">O-</option><option value="AB+">AB+</option><option value="AB-">AB-</option>
-        </select>
-        <input type="text" id="emergencyContact" maxlength="10" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full px-3 py-2 border rounded-md text-sm" placeholder="Phone (10 digits)">
+        <div>
+          <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Blood Group</label>
+          <select id="bloodGroup" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-[#285376] focus:border-[#285376]">
+            <option value="">Select Group</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Emergency Contact</label>
+          <input type="text" id="emergencyContact" maxlength="10" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-[#285376] focus:border-[#285376]" placeholder="9876543210">
+        </div>
       </div>
 
       <div>
         <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Passport Photo (Min 600px)</label>
-        <input type="file" id="photo" accept="image/*" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-[#285376]/10 file:text-[#285376]">
+        <p class="text-[10px] text-gray-400 mb-2 italic">High-res JPG/PNG only</p>
+        <input type="file" id="photo" accept="image/png, image/jpeg" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-[#285376]/10 file:text-[#285376] hover:file:bg-[#285376]/20">
       </div>
 
-      <p id="errorMsg" class="bg-red-50 text-red-600 text-[11px] p-2 rounded hidden border border-red-100 text-center"></p>
-      <button onclick="processUpload()" id="submitBtn" class="w-full bg-[#285376] text-white py-3 rounded-md font-bold shadow-md hover:bg-[#1e3e59] flex justify-center items-center">
+      <p id="errorMsg" class="bg-red-50 text-red-600 text-[11px] p-2 rounded hidden border border-red-100 text-center font-medium"></p>
+      
+      <button onclick="processUpload()" id="submitBtn" class="w-full bg-[#285376] text-white py-3 rounded-md font-bold shadow-md hover:bg-[#1e3e59] flex justify-center items-center transition duration-200">
         <span>Submit Registration</span>
       </button>
     </div>
   </div>
 
   <div id="successContainer" class="hidden bg-white p-10 rounded-xl shadow-lg w-full max-w-md text-center">
-    <h2 class="text-2xl font-bold text-gray-800">Success!</h2>
-    <p class="text-gray-500 mt-2">Registration saved successfully.</p>
-    <button onclick="location.reload()" class="mt-6 text-[#285376] font-bold">Add Another</button>
+    <div class="inline-flex items-center justify-center w-16 h-16 bg-[#285376]/10 rounded-full mb-4">
+      <svg class="w-8 h-8 text-[#285376]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+    </div>
+    <h2 class="text-2xl font-bold text-gray-800">Registration Complete</h2>
+    <p class="text-gray-500 mt-2">Your information has been securely saved.</p>
+    <button onclick="location.reload()" class="mt-6 text-[#285376] font-bold hover:underline">Add another candidate</button>
   </div>
 
   <script>
@@ -75,14 +98,19 @@
       const emergencyContact = document.getElementById('emergencyContact').value.trim();
       const fileInput = document.getElementById('photo');
       const submitBtn = document.getElementById('submitBtn');
+      const errorMsg = document.getElementById('errorMsg');
+
+      errorMsg.classList.add('hidden');
 
       if (!name || !empId || !bloodGroup || !emergencyContact || !fileInput.files[0]) {
-        showError("Fill all fields."); return;
+        showError("Please fill in all fields."); return;
       }
-      if (empId.length !== 5) { showError("Emp ID must be 5 digits."); return; }
+      if (empId.length !== 5) { showError("Employee ID must be 5 digits."); return; }
+      if (emergencyContact.length !== 10) { showError("Emergency Contact number must be 10 digits."); return; }
 
       const file = fileInput.files[0];
       const reader = new FileReader();
+
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<div class="loader h-4 w-4 mr-2"></div> Saving...';
 
@@ -90,7 +118,7 @@
         const img = new Image();
         img.onload = async function() {
           if (img.width < 600 || img.height < 600) {
-            showError("Photo quality too low (min 600px).");
+            showError("Photo quality too low (" + img.width + "x" + img.height + "px). Either height or width should be at least 600px.");
             resetButton();
           } else {
             const payload = { name, empId, cardType, bloodGroup, emergencyContact, data: e.target.result };
@@ -108,10 +136,13 @@
                 showError("This Employee ID is already registered.");
                 resetButton();
               } else {
-                showError("Error: " + result);
+                showError("Server Error: " + result);
                 resetButton();
               }
-            } catch (err) { showError("Connection Error."); resetButton(); }
+            } catch (err) { 
+              showError("Network Connection Error."); 
+              resetButton(); 
+            }
           }
         };
         img.src = e.target.result;
@@ -119,8 +150,16 @@
       reader.readAsDataURL(file);
     }
 
-    function showError(t) { const e = document.getElementById('errorMsg'); e.innerText = t; e.classList.remove('hidden'); }
-    function resetButton() { const b = document.getElementById('submitBtn'); b.disabled = false; b.innerHTML = 'Submit Registration'; }
+    function showError(t) { 
+      const e = document.getElementById('errorMsg'); 
+      e.innerText = t; 
+      e.classList.remove('hidden'); 
+    }
+    function resetButton() { 
+      const b = document.getElementById('submitBtn'); 
+      b.disabled = false; 
+      b.innerHTML = 'Submit Registration'; 
+    }
   </script>
 </body>
 </html>
