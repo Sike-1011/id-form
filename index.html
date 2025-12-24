@@ -126,7 +126,7 @@
         const img = new Image();
         img.onload = async function() {
           if (img.width < 600 || img.height < 600) {
-            showError("Photo quality too low (" + img.width + "x" + img.height + "px). Please use a clear 600px photo.");
+            showError("Photo quality too low (" + img.width + "x" + img.height + "px). Please use a clear photo with height and width at least 600px.");
             resetButton();
           } else {
             const payload = {
