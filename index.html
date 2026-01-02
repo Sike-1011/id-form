@@ -1,95 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ID Card Registration</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { background-color: #f3f4f6; font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
-    .loader { border-top-color: #285376; border-left-color: transparent; border-right-color: transparent; animation: spinner 1s linear infinite; }
-    @keyframes spinner { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    
+    body { 
+      background-color: #f3f4f6; 
+      font-family: 'Inter', sans-serif; 
+      margin: 0; 
+      padding: 0; 
+    }
+    
+    .loader { 
+      border-top-color: #ffffff; 
+      border-left-color: transparent; 
+      border-right-color: transparent; 
+      animation: spinner 0.6s linear infinite; 
+    }
+    
+    @keyframes spinner { 
+      0% { transform: rotate(0deg); } 
+      100% { transform: rotate(360deg); } 
+    }
+
+    /* Custom Radio Button Styling */
+    .card-option:checked + label { 
+      border-color: #285376; 
+      background-color: #285376; 
+      color: white; 
+      box-shadow: 0 4px 6px -1px rgba(40, 83, 118, 0.3);
+    }
+    
     input, select { font-size: 16px !important; }
-    .card-option:checked + label { border-color: #285376; background-color: #f0f7ff; color: #285376; }
   </style>
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
 
-  <div id="formContainer" class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md border-t-4 border-[#285376]">
+  <div id="formContainer" class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl w-full max-w-md border-t-8 border-[#285376]">
     <div class="flex justify-center mb-6">
-        <img src="https://lh3.googleusercontent.com/d/1zuH6Bs5Dd6UvsSslI8qHyTStJCTOuGQT" alt="Logo" class="h-16 w-auto object-contain">
+        <img src="https://lh3.googleusercontent.com/d/1zuH6Bs5Dd6UvsSslI8qHyTStJCTOuGQT" alt="Logo" class="h-14 w-auto object-contain">
     </div>
-    <div class="text-center mb-6">
-      <h2 class="text-2xl font-bold text-gray-800 tracking-tight">ID Card Registration</h2>
-      <p class="text-sm text-gray-500 mt-1">Provide official details for card printing.</p>
-    </div>
-
-    <div>
-      <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Select ID Card Type</label>
-      <div class="grid grid-cols-3 gap-2">
-        <input type="radio" name="cardType" id="regular" value="Regular" class="card-option hidden" checked>
-        <label for="regular" class="block text-center py-2 border-2 rounded-lg cursor-pointer text-[11px] font-bold text-gray-400">Regular</label>
-        
-        <input type="radio" name="cardType" id="platinum" value="Platinum" class="card-option hidden">
-        <label for="platinum" class="block text-center py-2 border-2 rounded-lg cursor-pointer text-[11px] font-bold text-gray-400">Platinum</label>
     
-        <input type="radio" name="cardType" id="lost" value="Lost-reapply" class="card-option hidden">
-        <label for="lost" class="block text-center py-2 border-2 rounded-lg cursor-pointer text-[11px] font-bold text-gray-400 leading-tight">Lost Reapply</label>
-      </div>
+    <div class="text-center mb-8">
+      <h2 class="text-2xl font-bold text-gray-800 tracking-tight">ID Card Registration</h2>
+      <p class="text-xs text-gray-500 mt-1 uppercase tracking-wider font-semibold">Employee Details Portal</p>
     </div>
 
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Full Name</label>
-          <input type="text" id="name" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-[#285376] focus:border-[#285376]" placeholder="Arsh Khera">
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Employee ID</label>
-          <input type="text" id="empId" maxlength="5" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-[#285376] focus:border-[#285376]" placeholder="12345">
-        </div>
-      </div>
-
-      <div class="grid grid-cols-2 gap-4">
-        <div>
-          <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Blood Group</label>
-          <select id="bloodGroup" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-[#285376] focus:border-[#285376]">
-            <option value="">Select Group</option>
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Emergency Contact</label>
-          <input type="text" id="emergencyContact" maxlength="10" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:ring-[#285376] focus:border-[#285376]" placeholder="9876543210">
-        </div>
-      </div>
-
+    <div class="space-y-6">
       <div>
-        <label class="block text-xs font-bold text-gray-600 uppercase mb-1">Passport Photo (Min 600px)</label>
-        <p class="text-[10px] text-gray-400 mb-2 italic">High-res JPG/PNG only</p>
-        <input type="file" id="photo" accept="image/png, image/jpeg" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-xs file:font-semibold file:bg-[#285376]/10 file:text-[#285376] hover:file:bg-[#285376]/20">
+        <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-widest mb-3">Select ID Card Type</label>
+        <div class="flex gap-2">
+          <div class="flex-1">
+            <input type="radio" name="cardType" id="regular" value="Regular" class="card-option hidden" checked>
+            <label for="regular" class="block text-center py-2.5 border-2 border-gray-100 rounded-xl cursor-pointer text-[11px] font-bold text-gray-400 transition-all">Regular</label>
+          </div>
+          <div class="flex-1">
+            <input type="radio" name="cardType" id="platinum" value="Platinum" class="card-option hidden">
+            <label for="platinum" class="block text-center py-2.5 border-2 border-gray-100 rounded-xl cursor-pointer text-[11px] font-bold text-gray-400 transition-all">Platinum</label>
+          </div>
+          <div class="flex-1">
+            <input type="radio" name="cardType" id="lost" value="Lost-reapply" class="card-option hidden">
+            <label for="lost" class="block text-center py-2.5 border-2 border-gray-100 rounded-xl cursor-pointer text-[11px] font-bold text-gray-400 transition-all leading-tight">Lost Reapply</label>
+          </div>
+        </div>
       </div>
 
-      <p id="errorMsg" class="bg-red-50 text-red-600 text-[11px] p-2 rounded hidden border border-red-100 text-center font-medium"></p>
+      <div class="space-y-4">
+        <div>
+          <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1 ml-1">Full Name</label>
+          <input type="text" id="name" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#285376] focus:bg-white outline-none transition-all" placeholder="Enter full name">
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1 ml-1">Employee ID</label>
+            <input type="text" id="empId" maxlength="5" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#285376] focus:bg-white outline-none" placeholder="12345">
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1 ml-1">Blood Group</label>
+            <select id="bloodGroup" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#285376] focus:bg-white outline-none">
+              <option value="">Select</option>
+              <option value="A+">A+</option><option value="A-">A-</option>
+              <option value="B+">B+</option><option value="B-">B-</option>
+              <option value="O+">O+</option><option value="O-">O-</option>
+              <option value="AB+">AB+</option><option value="AB-">AB-</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-[10px] font-bold text-gray-500 uppercase mb-1 ml-1">Emergency Contact Number</label>
+          <input type="text" id="emergencyContact" maxlength="10" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-[#285376] focus:bg-white outline-none" placeholder="9876543210">
+        </div>
+      </div>
+
+      <div class="p-4 bg-gray-50 rounded-xl border border-dashed border-gray-300">
+        <label class="block text-[10px] font-bold text-gray-500 uppercase mb-2">Passport Photo (Min 600px)</label>
+        <input type="file" id="photo" accept="image/png, image/jpeg" class="w-full text-xs text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:bg-[#285376] file:text-white hover:file:bg-[#1e3e59] cursor-pointer">
+      </div>
+
+      <p id="errorMsg" class="bg-red-50 text-red-600 text-[11px] p-3 rounded-lg hidden border border-red-100 text-center font-medium"></p>
       
-      <button onclick="processUpload()" id="submitBtn" class="w-full bg-[#285376] text-white py-3 rounded-md font-bold shadow-md hover:bg-[#1e3e59] flex justify-center items-center transition duration-200">
+      <button onclick="processUpload()" id="submitBtn" class="w-full bg-[#285376] text-white py-4 rounded-xl font-bold shadow-lg hover:shadow-none transition-all active:scale-95 flex justify-center items-center">
         <span>Submit Registration</span>
       </button>
     </div>
   </div>
 
-  <div id="successContainer" class="hidden bg-white p-10 rounded-xl shadow-lg w-full max-w-md text-center">
-    <div class="inline-flex items-center justify-center w-16 h-16 bg-[#285376]/10 rounded-full mb-4">
-      <svg class="w-8 h-8 text-[#285376]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+  <div id="successContainer" class="hidden bg-white p-10 rounded-2xl shadow-xl w-full max-w-md text-center border-t-8 border-green-500">
+    <div class="inline-flex items-center justify-center w-20 h-20 bg-green-50 rounded-full mb-6">
+      <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
     </div>
-    <h2 class="text-2xl font-bold text-gray-800">Registration Complete</h2>
-    <p class="text-gray-500 mt-2">Your information has been securely saved.</p>
-    <button onclick="location.reload()" class="mt-6 text-[#285376] font-bold hover:underline">Add another candidate</button>
+    <h2 class="text-2xl font-bold text-gray-800">Submission Successful</h2>
+    <p class="text-gray-500 mt-2">Your ID card details have been uploaded.</p>
+    <button onclick="location.reload()" class="mt-8 w-full py-3 border-2 border-gray-200 rounded-xl text-gray-600 font-bold hover:bg-gray-50 transition-all">Add Another Candidate</button>
   </div>
 
   <script>
@@ -109,24 +137,24 @@
         showError("Please fill in all fields."); return;
       }
       if (empId.length !== 5) { showError("Employee ID must be 5 digits."); return; }
-      if (emergencyContact.length !== 10) { showError("Emergency Contact number must be 10 digits."); return; }
+      if (emergencyContact.length !== 10) { showError("Contact must be 10 digits."); return; }
 
       const file = fileInput.files[0];
       const reader = new FileReader();
 
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<div class="loader h-4 w-4 mr-2"></div> Saving...';
+      submitBtn.innerHTML = '<div class="loader h-5 w-5 mr-3"></div> Processing...';
 
       reader.onload = function(e) {
         const img = new Image();
         img.onload = async function() {
           if (img.width < 600 || img.height < 600) {
-            showError("Photo quality too low (" + img.width + "x" + img.height + "px). Either height or width should be at least 600px.");
+            showError("Photo quality too low. Minimum 600x600px required.");
             resetButton();
           } else {
             const payload = { name, empId, cardType, bloodGroup, emergencyContact, data: e.target.result };
             
-            // PASTE YOUR GOOGLE WEB APP URL HERE
+            // Your Google Web App URL
             const scriptURL = "https://script.google.com/macros/s/AKfycbwydo0KqLB8tDHIbc5iaY2ReZNEAR-Fcwk4X7ER3-oFO32wq-6JUObWkQgaUnn6dy4C4g/exec";
 
             try {
@@ -136,14 +164,14 @@
                 document.getElementById('formContainer').classList.add('hidden');
                 document.getElementById('successContainer').classList.remove('hidden');
               } else if (result === "Duplicate") {
-                showError("This Employee ID is already registered.");
+                showError("Error: Employee ID already registered.");
                 resetButton();
               } else {
                 showError("Server Error: " + result);
                 resetButton();
               }
             } catch (err) { 
-              showError("Network Connection Error."); 
+              showError("Network Error. Check connection."); 
               resetButton(); 
             }
           }
@@ -158,10 +186,11 @@
       e.innerText = t; 
       e.classList.remove('hidden'); 
     }
+    
     function resetButton() { 
       const b = document.getElementById('submitBtn'); 
       b.disabled = false; 
-      b.innerHTML = 'Submit Registration'; 
+      b.innerHTML = '<span>Submit Registration</span>'; 
     }
   </script>
 </body>
