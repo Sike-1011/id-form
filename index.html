@@ -23,16 +23,19 @@
       <p class="text-sm text-gray-500 mt-1">Provide official details for card printing.</p>
     </div>
 
-    <div class="space-y-5">
-      <div>
-        <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Select ID Card Type</label>
-        <div class="grid grid-cols-2 gap-3">
-          <input type="radio" name="cardType" id="regular" value="Regular" class="card-option hidden" checked>
-          <label for="regular" class="block text-center py-2 border-2 rounded-lg cursor-pointer text-sm font-bold text-gray-400">Regular</label>
-          <input type="radio" name="cardType" id="platinum" value="Platinum" class="card-option hidden">
-          <label for="platinum" class="block text-center py-2 border-2 rounded-lg cursor-pointer text-sm font-bold text-gray-400">Platinum</label>
-        </div>
+    <div>
+      <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Select ID Card Type</label>
+      <div class="grid grid-cols-3 gap-2">
+        <input type="radio" name="cardType" id="regular" value="Regular" class="card-option hidden" checked>
+        <label for="regular" class="block text-center py-2 border-2 rounded-lg cursor-pointer text-[11px] font-bold text-gray-400">Regular</label>
+        
+        <input type="radio" name="cardType" id="platinum" value="Platinum" class="card-option hidden">
+        <label for="platinum" class="block text-center py-2 border-2 rounded-lg cursor-pointer text-[11px] font-bold text-gray-400">Platinum</label>
+    
+        <input type="radio" name="cardType" id="lost" value="Lost-reapply" class="card-option hidden">
+        <label for="lost" class="block text-center py-2 border-2 rounded-lg cursor-pointer text-[11px] font-bold text-gray-400 leading-tight">Lost Reapply</label>
       </div>
+    </div>
 
       <div class="grid grid-cols-2 gap-4">
         <div>
