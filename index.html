@@ -165,6 +165,11 @@
                 class="w-full bg-[#285376] text-white py-4 rounded-xl font-bold shadow-lg hover:shadow-none transition-all active:scale-95 flex justify-center items-center">
                 <span>Submit Registration</span>
             </button>
+
+            <!-- Watermark -->
+            <div class="text-center mt-4 text-[12px] text-gray-400 opacity-60">
+                developed in Astra by Arsh
+            </div>
         </div>
     </div>
 
@@ -182,6 +187,7 @@
             Another Candidate</button>
     </div>
 
+
     <script>
         // Show/hide platinum fields based on card type selection
         document.querySelectorAll('input[name="cardType"]').forEach(radio => {
@@ -194,6 +200,8 @@
                 }
             });
         });
+
+        let loadingInterval; // Global variable to track the loading animation
 
         async function processUpload() {
             const name = document.getElementById('name').value.trim();
@@ -217,7 +225,14 @@
             const reader = new FileReader();
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<div class="loader h-5 w-5 mr-3"></div> Processing...';
+            
+            // Animated dots loader
+            let dotCount = 0;
+            loadingInterval = setInterval(() => {
+                dotCount = (dotCount % 3) + 1;
+                const dots = '.'.repeat(dotCount);
+                submitBtn.innerHTML = `<span>Submitting${dots}</span>`;
+            }, 500);
 
             reader.onload = function (e) {
                 const img = new Image();
@@ -262,6 +277,7 @@
                             const res = await fetch(scriptURL, { method: 'POST', body: JSON.stringify(payload) });
                             const result = await res.text();
                             if (result === "Success") {
+                                clearInterval(loadingInterval);
                                 document.getElementById('formContainer').classList.add('hidden');
                                 document.getElementById('successContainer').classList.remove('hidden');
                             } else if (result === "Duplicate") {
@@ -289,6 +305,7 @@
         }
 
         function resetButton() {
+            clearInterval(loadingInterval);
             const b = document.getElementById('submitBtn');
             b.disabled = false;
             b.innerHTML = '<span>Submit Registration</span>';
